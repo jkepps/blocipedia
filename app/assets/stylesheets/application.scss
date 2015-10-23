@@ -1,0 +1,19 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.navbar-logo {
+	width: 35px;
+	display: inline !important;
+}
+
+.navbar-brand {
+	font-size: 2.5rem;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.footer {
+	color: #fff;
+}
