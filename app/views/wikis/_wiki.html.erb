@@ -1,7 +1,8 @@
 <div class="media">
 	<div class="media-body">
 		<h2 class="media-heading">
-		   <%= wiki.title %>
+		   <%= wiki.title %> <br >
+		   <small>Created by: <%= link_to wiki.user.username.capitalize, "#" %></small>
 		</h2>
 		<p>
 			<%= wiki.body %>

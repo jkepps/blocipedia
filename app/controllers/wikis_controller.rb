@@ -32,16 +32,45 @@ class WikisController < ApplicationController
 		end
 	end
 
+	def edit
+		@wiki = Wiki.find(params[:id])	
+	end
+
+	def update
+		@wiki = Wiki.find(params[:id])
+		@wiki.assign_attributes(wiki_params)
+
+		if @wiki.save
+			flash[:notice] = "The wiki was updated successfully."
+			redirect_to wiki_path(@wiki)
+		else
+			flash[:error] = "An error occurred, please try again."
+			render :edit
+		end
+	end
+
+	def destroy
+		@wiki = Wiki.find(params[:id])
+
+		if @wiki.destroy
+			flash[:notice] = "The wiki was deleted successfully."
+			redirect_to wikis_path
+		else
+			flash[:error] = "An error occurred, please try again."
+			redirect_to @wiki
+		end
+	end
+
 	private
 	def wiki_params
 		params.require(:wiki).permit(:title, :body)
 	end
 
 	def authorize_user
-    user = User.find(params[:user_id])
-    unless current_user == user
+    wiki = Wiki.find(params[:id])
+    unless current_user == wiki.user
       flash[:alert] = "You do not have permission to do that."
-      redirect_to wikis_path
+      redirect_to wiki_path(wiki)
     end
   end
 end
