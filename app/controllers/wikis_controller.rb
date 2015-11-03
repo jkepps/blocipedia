@@ -3,7 +3,7 @@ class WikisController < ApplicationController
 	before_action :authorize_user, except: [:index, :show, :new, :create]
 
 	def index
-		@wikis = Wiki.all
+		@wikis = Wiki.visible_to(current_user)
 	end
 
 	def show
@@ -63,7 +63,7 @@ class WikisController < ApplicationController
 
 	private
 	def wiki_params
-		params.require(:wiki).permit(:title, :body)
+		params.require(:wiki).permit(:title, :body, :private)
 	end
 
 	def authorize_user

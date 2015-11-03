@@ -7,6 +7,7 @@
 					<%= link_to wiki.title, wiki %>
 					<small> - Created by: <%= link_to wiki.user.username.capitalize, "#" %></small>
 				</h3> 
+				<p><small>Public: <%= wiki.public? %></small></p>
 			</div>
 		</div>
 	<% end %>
