@@ -14,5 +14,6 @@ FactoryGirl.define do
 		username
 		password '12345678'
 		password_confirmation '12345678'
+		role 'standard'
 	end
 end

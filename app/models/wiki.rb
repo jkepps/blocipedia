@@ -13,12 +13,12 @@ class Wiki < ActiveRecord::Base
   	wikis = []
   	all_wikis = Wiki.all
 
-  	if false
-  		wikis = all_wikis
-  	elsif user
-  		wikis = all_wikis.select { |wiki| wiki.public? || wiki.user == user }
-  	else
+  	if !user
   		wikis = all_wikis.select { |wiki| wiki.public? }
+  	elsif user.admin?
+  		wikis = all_wikis
+  	elsif user.premium? || user.standard?
+  		wikis = all_wikis.select { |wiki| wiki.public? || wiki.user == user }
   	end
   	wikis
   end

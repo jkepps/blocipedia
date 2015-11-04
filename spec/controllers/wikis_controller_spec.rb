@@ -21,6 +21,8 @@ RSpec.describe WikisController, type: :controller do
 			end
 
 			it "assigns Wiki.all to wiki" do
+				my_user
+				my_wiki
 				expect(assigns(:wikis)).to eq([my_wiki])
 			end
 		end
@@ -237,7 +239,7 @@ RSpec.describe WikisController, type: :controller do
 			end
 
 			it "assigns Wiki.all to wiki" do
-				expect(assigns(:wikis)).to eq([my_wiki])
+				expect(assigns(:wikis)).to eq([my_wiki, my_private_wiki])
 			end
 		end
 

@@ -10,11 +10,28 @@ include Faker
 end
 users = User.all
 
-# Create my user account
+# Create standard account
 User.create!(
-	username: "jepps",
-	email: "member@example.com",
-	password: "password"
+	username: "Standard_User",
+	email: "standard@example.com",
+	password: "password",
+	role: "standard"
+)
+
+# Create premium account
+User.create!(
+	username: "Premium_User",
+	email: "premium@example.com",
+	password: "password",
+	role: "premium"
+)
+
+# Create admin account
+User.create!(
+	username: "Admin_User",
+	email: "admin@example.com",
+	password: "password",
+	role: "admin"
 )
 
 # Create Wikis
