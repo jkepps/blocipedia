@@ -1,27 +1,24 @@
 class WikisController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
-	before_action :authorize_user, except: [:index, :show, :new, :create]
 
 	def index
-		@wikis = Wiki.visible_to(current_user)
+		@wikis = policy_scope(Wiki)
 	end
 
 	def show
 		@wiki = Wiki.find(params[:id])
-
-		if @wiki.user != current_user && @wiki.private 
-      flash[:error] = "You do not have permission to view this wiki"
-      redirect_to wikis_path
-    end
+		authorize @wiki
 	end
 
 	def new
 		@wiki = Wiki.new
+		authorize @wiki
 	end
 
 	def create
 		@wiki = Wiki.new(wiki_params)
 		@wiki.user = current_user
+		authorize @wiki
 
 		if @wiki.save
 			flash[:notice] = "You have successfully created a new wiki."
@@ -33,12 +30,14 @@ class WikisController < ApplicationController
 	end
 
 	def edit
-		@wiki = Wiki.find(params[:id])	
+		@wiki = Wiki.find(params[:id])
+		authorize @wiki
 	end
 
 	def update
 		@wiki = Wiki.find(params[:id])
 		@wiki.assign_attributes(wiki_params)
+		authorize @wiki
 
 		if @wiki.save
 			flash[:notice] = "The wiki was updated successfully."
@@ -51,6 +50,7 @@ class WikisController < ApplicationController
 
 	def destroy
 		@wiki = Wiki.find(params[:id])
+		authorize @wiki
 
 		if @wiki.destroy
 			flash[:notice] = "The wiki was deleted successfully."
@@ -65,12 +65,4 @@ class WikisController < ApplicationController
 	def wiki_params
 		params.require(:wiki).permit(:title, :body, :private)
 	end
-
-	def authorize_user
-    wiki = Wiki.find(params[:id])
-    unless current_user == wiki.user
-      flash[:alert] = "You do not have permission to do that."
-      redirect_to wiki_path(wiki)
-    end
-  end
 end

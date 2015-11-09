@@ -1,0 +1,10 @@
+en:
+  pundit:
+    default: 'Sorry, you are not authorized to do that.'
+    wiki_policy:
+      new?: 'Only users can create posts. Please log in or sign up and try again.'
+      create?: 'Only users can create posts. Please log in or sign up and try again.'
+      edit?: 'You you do not have permission to edit this post!'
+      update?: 'You you do not have permission to edit this post!'
+      destroy?: 'You do not have authorization to delete this post!'
+      show?: 'You do not have permission to view this post!'

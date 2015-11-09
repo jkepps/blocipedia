@@ -43,26 +43,4 @@ RSpec.describe Wiki, type: :model do
 			expect(private_wiki.public?).to be_falsy
 		end
 	end
-
-	describe "#visible_to" do
-		context "admin" do
-			it "should return all the wikis" do
-				expect(Wiki.visible_to(admin)).to eq([wiki, private_wiki])
-			end
-		end
-
-		context "premium and standard user" do
-			it "should return public wikis" do
-				wiki
-				private_wiki
-				expect(Wiki.visible_to(user)).to eq([wiki])
-			end
-
-			it "should return private wikis that belong to the user" do
-				private_wiki
-				wiki.update_attributes(private: true)
-				expect(Wiki.visible_to(premium_user)).to eq([private_wiki])
-			end
-		end
-	end
 end

@@ -45,3 +45,5 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.5.1'
 # Figaro will store Sendgrid and Devise credentials as environment variables.
 gem 'figaro', '1.0'
+# Pundit provides minimal authorization through OO design and pure Ruby classes
+gem 'pundit'

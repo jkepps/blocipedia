@@ -8,18 +8,4 @@ class Wiki < ActiveRecord::Base
   def public?
   	!self.private
   end
-
-  def self.visible_to(user)
-  	wikis = []
-  	all_wikis = Wiki.all
-
-  	if !user
-  		wikis = all_wikis.select { |wiki| wiki.public? }
-  	elsif user.admin?
-  		wikis = all_wikis
-  	elsif user.premium? || user.standard?
-  		wikis = all_wikis.select { |wiki| wiki.public? || wiki.user == user }
-  	end
-  	wikis
-  end
 end

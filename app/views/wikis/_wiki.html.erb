@@ -4,6 +4,7 @@
 		   <%= wiki.title %> <br >
 		   <small>Created by: <%= link_to wiki.user.username.capitalize, "#" %></small>
 		</h2>
+		<%= public_or_private_tag(wiki) %>
 		<p>
 			<%= wiki.body %>
 		</p>
