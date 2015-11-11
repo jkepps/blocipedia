@@ -5,8 +5,8 @@
 		   <small>Created by: <%= link_to wiki.user.username.capitalize, wiki.user %></small>
 		</h2>
 		<%= public_or_private_tag(wiki) %>
-		<p>
-			<%= wiki.body %>
-		</p>
+		<div>
+			<%= markdown(wiki.body) %>
+		</div>
 	</div>
 </div>

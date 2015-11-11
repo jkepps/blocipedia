@@ -49,3 +49,5 @@ gem 'figaro', '1.0'
 gem 'pundit'
 # Stripe is used to charge members for premium access
 gem 'stripe'
+# RedCarpet is used to render markdown text as HTML
+gem 'redcarpet'
