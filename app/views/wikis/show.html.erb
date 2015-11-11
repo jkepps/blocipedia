@@ -1,11 +1,15 @@
 <div class="col-md-8">
 	<%= render @wiki %>	
 </div>
-<% if @wiki.public? or current_user == @wiki.user %>
+<% if @wiki.public? or current_user == @wiki.user or current_user.admin? or @wiki.users.include?(current_user)%>
 	<div class="col-md-4">
 		<%= link_to "Edit Wiki", edit_wiki_path(@wiki), class: 'btn btn-lg btn-success' %>
-		<% if current_user && (current_user == @wiki.user or current_user.admin?) %>
+		<% if current_user && (current_user == @wiki.user or current_user.admin? ) %>
 			<%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-lg btn-danger', data: {confirm: 'Are you sure you want to delete this post?'} %>
+		<% end %>
+		<%= render partial: 'collaborators/list', locals: { wiki: @wiki, users: @wiki.users } %>
+		<% if !@wiki.public? && ((current_user == @wiki.user && current_user.premium?) or current_user.admin?) %>
+			<%= render partial: 'collaborators/form', locals: { wiki: @wiki } %>
 		<% end %>
 	</div>
 <% end %>

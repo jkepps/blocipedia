@@ -8,7 +8,6 @@ include Faker
 		password: Internet.password
 	)
 end
-users = User.all
 
 # Create standard account
 User.create!(
@@ -33,6 +32,7 @@ User.create!(
 	password: "password",
 	role: "admin"
 )
+users = User.all
 
 # Create Wikis
 30.times do
@@ -48,10 +48,20 @@ User.create!(
 		title: Book.title,
 		body: body,
 		user: users.sample,
-		private: [true, false, false, false].sample
+		private: [true, true, false, false].sample
 	)
+end
+wikis = Wiki.all
+
+# Create collaborators
+20.times do
+	collaborator = wikis.where(private: true).sample.collaborators.build(
+		user: users.sample
+	)
+	collaborator.save
 end
 
 puts "Seed finished"
 puts "#{User.count} users created"
 puts "#{Wiki.count} wikis created"
+puts "#{Collaborator.count} collaborators created"

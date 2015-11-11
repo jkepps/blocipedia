@@ -1,7 +1,7 @@
 class WikiPolicy < ApplicationPolicy
 	def show?
 		if user.present?
-			record.public? or user.admin? or record.user == user
+			record.public? or user.admin? or record.user == user or record.users.include?(user)
 		else
 			record.public?
 		end
@@ -16,11 +16,11 @@ class WikiPolicy < ApplicationPolicy
 	end
 
 	def edit?
-		record.public? or user.admin? or record.user == user
+		record.public? or user.admin? or record.user == user or record.users.include?(user)
 	end
 
 	def update?
-		record.public? or user.admin? or record.user == user
+		record.public? or user.admin? or record.user == user or record.users.include?(user)
 	end
 
 	def destroy?
@@ -35,13 +35,19 @@ class WikiPolicy < ApplicationPolicy
 		end
 
 		def resolve
+			wikis = []
 			if !user
-				scope.where(private: false)
+				wikis = scope.where(private: false)
 			elsif user.admin?
-				scope.all 
+				wikis = scope.all 
+			elsif user.premium?
+				all_wikis = scope.all
+				wikis = all_wikis.select { |wiki| wiki.public? || wiki.user == user || wiki.users.include?(user) }
 			else
-				scope.where("private = ? or user_id = ?", false, @user.id)
+				all_wikis = scope.all
+				wikis = all_wikis.select { |wiki| wiki.public? || wiki.users.include?(user) }
 			end
+			wikis
 		end
 	end
 end

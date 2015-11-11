@@ -1,9 +1,15 @@
-<div class="col-md-8 col-xs-10">
-	<h1>Wikis</h1>
+<div class="row">
+	<h1 class="text-center">Wikis</h1>
 	<%= render partial: 'wikis/list', locals: {wikis: @wikis} %>
-</div>
-<div class="col-md-4 col-xs-12">
 	<% if current_user %>
-		<%= link_to "Create Wiki", new_wiki_path, class: 'btn btn-lg btn-success' %>
+		<div class="wiki-block col-xs-6 col-sm-4 col-md-3">
+			<div class="wiki-body text-center">
+				<h3 class="wiki-heading">
+					<%= link_to new_wiki_path do %>
+						<i class="glyphicon glyphicon-plus" style="font-size: 4rem"></i>
+					<% end %>
+				</h3>
+			</div>
+		</div>
 	<% end %>
 </div>

@@ -5,4 +5,4 @@
 <% end %>
 
 <h2> Wikis </h2>
-<%= render partial: 'wikis/list', locals: {wikis: @user.wikis} %>
+<%= render partial: 'wikis/list', locals: {wikis: Wiki.where(user: @user)} %>

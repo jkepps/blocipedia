@@ -1,9 +1,14 @@
 <% wikis.each do |wiki| %>
-	<div class="media">
-		<div class="media-body">
-			<h3 class="media-heading">
-				<%= link_to wiki.title, wiki %>
-			</h3> 
+	<%= link_to wiki  do %>
+		<div class="wiki-block col-xs-6 col-sm-4 col-md-3">
+			<div class="wiki-body text-center">
+				<h3 class="wiki-heading">
+					<%= wiki.title %>
+				</h3> 
+				<h6>
+					<%= wiki.user.username %>
+				</h6>
+			</div>
 		</div>
-	</div>
+	<% end %>
 <% end %>

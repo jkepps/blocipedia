@@ -10,6 +10,7 @@ RSpec.describe Wiki, type: :model do
 
 	# Shoulda tests for user
 	it { should belong_to(:user) }
+	it { should have_many(:users).through(:collaborators) }
 	it { should validate_presence_of(:user) }
 
 	# Shoulda tests for title

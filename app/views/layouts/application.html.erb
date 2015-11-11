@@ -6,7 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body>	
 
 	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container" role="navigation">
@@ -47,7 +47,7 @@
 		</div>
 	</nav>
 
-	<div class="row">
+	<div class="row content-wrapper" >
 		<div class="container">
 			<div class="flash">
 				<% if flash[:notice] %>
@@ -69,18 +69,7 @@
 		  </div>
 			
 			<%= yield %>
-			
-			<!-- <div class="col-md-offset-1 col-md-3">
-				<h4>Trending Topics</h4>
-				<ul class="list-unstyled">
-					<li>Presidential Race 2016</li>
-					<li>Ruby On Rails</li>
-					<li>Interior Design</li>
-					<li>DIY</li>
-					<li>Mars</li>
-					<li>Lamar Odom</li>
-				</ul>
-			</div> -->
+
 		</div>
 	</div>
 
@@ -89,6 +78,5 @@
 			<h6 class="text-center">&copy;Blocipedia 2015, All rights reserved</h6>
 		</div>
 	</div>
-
 </body>
 </html>

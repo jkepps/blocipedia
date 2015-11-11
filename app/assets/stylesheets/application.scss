@@ -14,6 +14,19 @@ a:hover {
 	text-decoration: none;
 }
 
+.content-wrapper {
+  min-height: 77vh;
+}
+
+.wiki-body {
+  height: 100px;
+  margin: 30px auto;
+}
+
+.wiki-block h6 {
+  color: #000
+}
+
 #footer {
   height: 60px;
   background-color: #414141;
