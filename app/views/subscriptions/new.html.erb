@@ -10,6 +10,6 @@
 		<p>Collaborate with your friends and share ideas.</p>
 	</div>
 	<div class="col-sm-12 text-center">
-		<script class='stripe-button' src="http://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount=<% @stripe_btn_data[:amount] %> data-description="<%= @stripe_btn_data[:description] %>" ></script>
+		<script class='stripe-button' src="http://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount="<% @stripe_btn_data[:amount] %>" data-description="<%= @stripe_btn_data[:description] %>" ></script>
 	</div>
 <% end %>

@@ -1,6 +1,6 @@
 class SubscriptionsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :already_premium?
+	before_action :already_premium?, except: :destroy
 
   def new
   	@stripe_btn_data = {
@@ -38,9 +38,10 @@ class SubscriptionsController < ApplicationController
 		customer = Stripe::Customer.retrieve(current_user.stripe_id)
 		subscription = customer.subscriptions.first
 
-		if subscription.delete(at_period_end: true)
+		if subscription.delete()
 			current_user.update_attributes(role: 'standard')
-			flash[:notice] = "You have successfully downgraded to standard membership."
+			flash[:notice] = "You have successfully downgraded to standard membership. All of your wikis are now public."
+			make_wikis_public current_user
 			redirect_to current_user
 		else
 			flash[:error] = "There was an error and we couldn't complete your request. Please try again."
@@ -56,6 +57,13 @@ class SubscriptionsController < ApplicationController
 		elsif current_user.admin?
 			flash[:alert] = "Administrators do not need to pay for premium membership."
 			redirect_to edit_user_registration_path(current_user)
+		end
+	end
+
+	def make_wikis_public(user)
+		wikis = user.wikis.where(private: true)
+		wikis.each do |wiki|
+			wiki.update_attributes(private: false)
 		end
 	end
 end
