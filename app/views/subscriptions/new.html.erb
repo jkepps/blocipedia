@@ -1,0 +1,15 @@
+<%= form_tag subscriptions_path do %>
+	<h4 class="text-center" style="padding: 20px">Upgrade to Premium membership!</h4>
+	<div class="col-sm-4 text-center premium-text-blocks">
+		<p>Premium membership allows you to create and maintain private wikis!</p>
+	</div>
+	<div class="col-sm-4 text-center premium-text-blocks">
+		<p>$1.99/month gives you unlimited access to all private wikis</p>
+	</div>
+	<div class="col-sm-4 text-center premium-text-blocks">
+		<p>Collaborate with your friends and share ideas.</p>
+	</div>
+	<div class="col-sm-12 text-center">
+		<script class='stripe-button' src="http://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount=<% @stripe_btn_data[:amount] %> data-description="<%= @stripe_btn_data[:description] %>" ></script>
+	</div>
+<% end %>

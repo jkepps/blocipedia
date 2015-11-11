@@ -2,7 +2,7 @@
 	<div class="media-body">
 		<h2 class="media-heading">
 		   <%= wiki.title %> <br >
-		   <small>Created by: <%= link_to wiki.user.username.capitalize, "#" %></small>
+		   <small>Created by: <%= link_to wiki.user.username.capitalize, wiki.user %></small>
 		</h2>
 		<%= public_or_private_tag(wiki) %>
 		<p>

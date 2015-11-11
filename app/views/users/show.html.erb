@@ -1,0 +1,8 @@
+<h1><%= @user.username.capitalize %>'s Profile</h1>
+<small><%= @user.role.capitalize %> User</small>
+<% if @user == current_user %>
+	- <%= link_to "Edit Membership", edit_user_registration_path(current_user) %>
+<% end %>
+
+<h2> Wikis </h2>
+<%= render partial: 'wikis/list', locals: {wikis: @user.wikis} %>

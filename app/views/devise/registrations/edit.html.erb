@@ -13,6 +13,11 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
@@ -30,6 +35,14 @@
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
+<% end %>
+
+<% if resource.role == 'standard' %>
+  <h3>Upgrade to Premium</h3>
+  <p>Want more out of Blocipedia? <%= link_to "Upgrade", new_subscription_path%></p>
+<% elsif resource.role == 'premium' %>
+  <h3>Downgrade to Standard</h3>
+  <p>No need for a premium membership anymore? <%= link_to "Downgrade", subscription_path(current_user), method: :delete %></p>
 <% end %>
 
 <h3>Cancel my account</h3>

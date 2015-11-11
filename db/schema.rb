@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103234626) do
+ActiveRecord::Schema.define(version: 20151110233558) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20151103234626) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "role"
+    t.string   "stripe_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -41,10 +42,10 @@ ActiveRecord::Schema.define(version: 20151103234626) do
   create_table "wikis", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
-    t.boolean  "private"
+    t.boolean  "private",    default: false
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "wikis", ["user_id"], name: "index_wikis_on_user_id"
