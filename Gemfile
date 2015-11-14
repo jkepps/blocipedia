@@ -51,3 +51,5 @@ gem 'pundit'
 gem 'stripe'
 # RedCarpet is used to render markdown text as HTML
 gem 'redcarpet'
+# EpicEdior dropped into Rails
+gem 'epic-editor-rails'
