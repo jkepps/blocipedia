@@ -53,3 +53,5 @@ gem 'stripe'
 gem 'redcarpet'
 # FriendlyId allows you to create pretty URL's and work with human-friendly strings as if they were numeric ids
 gem 'friendly_id', '~> 5.1.0'
+# EpicEdior dropped into Rails
+gem 'epic-editor-rails'
