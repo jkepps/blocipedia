@@ -51,3 +51,5 @@ gem 'pundit'
 gem 'stripe'
 # RedCarpet is used to render markdown text as HTML
 gem 'redcarpet'
+# FriendlyId allows you to create pretty URL's and work with human-friendly strings as if they were numeric ids
+gem 'friendly_id', '~> 5.1.0'
