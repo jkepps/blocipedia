@@ -15,8 +15,8 @@
   <% end %>
   <%= form_group_tag(wiki.errors[:body]) do %>
     <%= f.label :body %>
-    <div id="epiceditor">
-      <%= f.text_area :body, rows: 16, class: 'form-control', placeholder: "Enter wiki body" %>
+    <div class="field" id="epiceditor">
+      <%= f.text_area :body, rows: 16, class: 'form-control hide', id: 'epictextarea', placeholder: "Enter wiki body" %>
     </div>
   <% end %>
   <div class="form-group">
