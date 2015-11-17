@@ -55,3 +55,5 @@ gem 'redcarpet'
 gem 'friendly_id', '~> 5.1.0'
 # EpicEdior dropped into Rails
 gem 'epic-editor-rails'
+# Turbolinks
+gem 'jquery-turbolinks'
